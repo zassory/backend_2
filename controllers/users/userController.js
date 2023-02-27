@@ -4,21 +4,25 @@ import registerUserService from '../../services/users/createUserServices.js';
 
 const createUserController = async( req, res = response ) => {
     
-    //const { email } = await registerUserService(req.body);
-    const { email } = req.body;
-    console.log(email);
+    const { statusCode , ok , nombres , apellidos , email , password , token , confirmado } = await registerUserService(req.body);
+    
+    console.log(statusCode , ok , nombres , apellidos , email , password , token , confirmado);
 
-    // if( statusCode ===  400){
-    //     return res.status(400).json({
-    //         ok,
-    //         msg
-    //     })
-    // }
-    // res.json({
-    //     // ok,
-    //     // nombre,
-    //     email
-    // });
+    if( statusCode ===  400){
+        return res.status(400).json({
+            ok,
+            msg
+        })
+    }
+    res.json({
+        statusCode,
+        ok,
+        nombres,
+        email,
+        password,
+        token,
+        confirmado,
+    });
 }
 
 export {
