@@ -1,10 +1,9 @@
-import { response , request } from "express";
 import Usuario from '../../models/Usuario.js';
 import generarId from '../../helpers/generarId.js'
 
 //TODO: generar el jwt
 
-const registerUserService = async(req = request,res=response) => {
+const registerUserService = async(body) => {
 
     let user = new Usuario({
         rutContacto    : body.rutContacto,
@@ -18,7 +17,16 @@ const registerUserService = async(req = request,res=response) => {
         token : body.token,
         confirmado : body.confirmado
     });
-    try{        
+    try{
+
+        const { email } = body;
+        const existeUsuario = await Usuario.findOne({ email });
+
+        if(existeUsuario){
+            const error = new Error("Usuario ya registrado");
+            return res
+        }
+
         await user.save();
 
         return {
@@ -39,7 +47,8 @@ const registerUserService = async(req = request,res=response) => {
             msg:'Por favor hable con el administrador'
         }
     }
-
 }
 
-export default registerUserService;
+export { 
+    registerUserService
+};
