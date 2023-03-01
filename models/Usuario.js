@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+//import bcrypt from "bcrypt";
 
 const usuarioSchema = mongoose.Schema({
     rutContacto: {

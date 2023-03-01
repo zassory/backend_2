@@ -9,6 +9,11 @@ const createUserController = async( req, res = response ) => {
 
     const { existeUsuario } = await userExistsServices(req.body);
 
+    if(existeUsuario){
+        const error = new Error("Usuario ya registrado");
+        return res.status("Usuario ya registrado");
+    }    
+
     if( statusCode ===  400){
         return res.status(400).json({
             ok,
