@@ -19,7 +19,11 @@ const createDirectionService = async() => {
         };
 
     }catch(error){
-        console.log(error);
+        return {
+            statusCode: 400,
+            ok: false,
+            error: error.error
+        };
     }
 }
 
