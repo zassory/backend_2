@@ -1,6 +1,7 @@
 import {response,request} from "express";
 
 import { createDirectionServices } from "../../services/direction/createDirectionService.js";
+import { listDirectionsServices } from "../../services/direction/listDirectionsServices";
 
 
 const createDirectionController = async(req = request , res = response) => {
@@ -9,7 +10,7 @@ const createDirectionController = async(req = request , res = response) => {
         statusCode , 
         ok , 
         nombre , 
-        nombreDirector } = createDirectionServices(req.body);
+        nombreDirector } = await createDirectionServices(req.body);
 
     if(statusCode === 400){
         return res.status(400).json({
@@ -26,6 +27,29 @@ const createDirectionController = async(req = request , res = response) => {
     });
 }
 
+const listDirecionsController = async(req = request , response = response){
+    
+    const {
+        statusCode , 
+        ok , 
+        nombre , 
+        nombreDirector
+    } = await listDirectionsServices(req.body);
+
+    if(statusCode === 400){
+        const error = new Error("Accion no Válida, hable con el administrador");
+        return res.status(400).json({msg: error.message});
+    }
+
+    res.status(200).json({
+        statusCode : 200
+        ok , 
+        nombre,
+        nombreDirector
+    });
+}
+
 export {
-    createDirectionController
+    createDirectionController,
+    listDirecionsController
 }

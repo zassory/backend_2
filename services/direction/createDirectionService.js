@@ -1,7 +1,7 @@
 import Direccion from "../../models/Direction";
 
 
-const createDirectionService = async() => {
+const createDirectionService = async(body) => {
   
     let direction = new Direccion({
         nombre: body.nombre,
