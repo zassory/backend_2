@@ -47,6 +47,7 @@ const registerUserService = async(body) => {
             msg:'Por favor hable con el administrador'
         }
     }
+
 }
 
 export { 

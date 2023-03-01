@@ -8,7 +8,7 @@ const direccionSchema = mongoose.Schema({
     nombreDirector: {
         type: String,
         required: true,
-    }    
+    }
 }, {
     timestamps: true
 });
