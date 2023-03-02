@@ -1,4 +1,4 @@
-import Direccion from "../../models/Direction";
+import Direccion from "../../models/Direction.js";
 
 
 const createDirectionService = async(body) => {
@@ -27,6 +27,6 @@ const createDirectionService = async(body) => {
     }
 }
 
-export {
-    createDirectionService
-}
+
+export default createDirectionService;
+

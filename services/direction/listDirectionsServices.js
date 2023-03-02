@@ -5,13 +5,12 @@ const listDirectionsServices = async(body) => {
 
     try{
 
-        const { nombre , nombreDirector } = await Direccion.find();
+        let directions = await Direccion.find();        
         
         return {
             statusCode : 200,
             ok : true,
-            nombre,
-            nombreDirector
+            directions
         }
 
     }catch(error){

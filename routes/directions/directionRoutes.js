@@ -6,4 +6,6 @@ import {
 } from "../../controllers/direction/direction.js"
 
 router.post("/",createDirectionController);
-router.get("/direccion",listDirecionsController);
+router.get("/",listDirecionsController);
+
+export default router;

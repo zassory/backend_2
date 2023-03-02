@@ -4,6 +4,7 @@ import cors from "cors";
 import { conectarDB } from "./config/db.js";
 
 import userRoutes from './routes/users/userRoutes.js';
+import directionRoutes from './routes/directions/directionRoutes.js';
 
 // TODO: rutas 
 
@@ -33,6 +34,8 @@ conectarDB();
 
 //Routing
 app.use("/api/usuarios",userRoutes);
+//Direction
+app.use("/api/direccion",directionRoutes);
 
 const PORT = process.env.PORT || 4001;
 

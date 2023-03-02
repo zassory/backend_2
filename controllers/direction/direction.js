@@ -1,7 +1,7 @@
 import {response,request} from "express";
 
-import { createDirectionServices } from "../../services/direction/createDirectionService.js";
-import { listDirectionsServices } from "../../services/direction/listDirectionsServices";
+import createDirectionServices from "../../services/direction/createDirectionService.js";
+import { listDirectionsServices } from "../../services/direction/listDirectionsServices.js";
 
 
 const createDirectionController = async(req = request , res = response) => {
@@ -27,13 +27,11 @@ const createDirectionController = async(req = request , res = response) => {
     });
 }
 
-const listDirecionsController = async(req = request , response = response){
-    
+const listDirecionsController = async(req = request , res = response) => {    
     const {
         statusCode , 
         ok , 
-        nombre , 
-        nombreDirector
+        directions
     } = await listDirectionsServices(req.body);
 
     if(statusCode === 400){
@@ -41,11 +39,16 @@ const listDirecionsController = async(req = request , response = response){
         return res.status(400).json({msg: error.message});
     }
 
-    res.status(200).json({
-        statusCode : 200
+    console.log({
+        statusCode : 200,
         ok , 
-        nombre,
-        nombreDirector
+        directions
+    })
+
+    res.status(200).json({
+        statusCode : 200,
+        ok , 
+        directions
     });
 }
 
