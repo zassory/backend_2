@@ -45,9 +45,7 @@ const listDirecionsController = async(req = request , res = response) => {
         directions
     })
 
-    res.status(200).json({
-        statusCode : 200,
-        ok , 
+    res.status(200).json({        
         directions
     });
 }
